@@ -11,6 +11,9 @@ def analyze_resume(parsed_data: dict, job_desc: str) -> str:
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable is not set")
 
+    # Strip any potential leading/trailing whitespace or quotes
+    api_key = api_key.strip().strip("'\"")
+
     # New SDK: create a client (replaces the old genai.configure() pattern)
     client = genai.Client(api_key=api_key)
 
